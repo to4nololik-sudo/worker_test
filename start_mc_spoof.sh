@@ -10,11 +10,12 @@ NEW_DISK="DISK-$(tr -dc A-Z0-9 < /dev/urandom | head -c 8)"
 NEW_MAC=$(od -An -N6 -tx1 /dev/urandom | sed 's/  */:/g' | cut -c2- | tr '[:lower:]' '[:upper:]')
 
 echo "▶ Генерируем новые идентификаторы:"
+echo "   Nickname: $SUDO_USER" 
 echo "   UUID: $NEW_UUID"
 echo "   Board: $NEW_BOARD"
 echo "   Disk: $NEW_DISK"
 echo "   MAC: $NEW_MAC"
-
+# that are nice idea but take it another way, thank
 # 1. Меняем MAC (от root)
 echo "▶ Меняем MAC-адрес интерфейса wlan0..."
 ip link set dev wlan0 down
